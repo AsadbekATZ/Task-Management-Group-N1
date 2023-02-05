@@ -1,0 +1,10 @@
+[ {
+  "id" : "82356b21-781c-4733-8adf-c61a0ffd5cc8",
+  "createdDate" : "04.02.2023 18:34:35",
+  "updateDate" : "04.02.2023 18:34:35",
+  "name" : "Harry",
+  "lastname" : "Potter",
+  "email" : "test@gmail.com",
+  "password" : "password",
+  "role" : "USER"
+} ]
