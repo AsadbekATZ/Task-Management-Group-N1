@@ -2,6 +2,7 @@ package org.example.service.task;
 
 import org.example.DTO.AddDto;
 import org.example.DTO.AssignTaskDto;
+import org.example.DTO.EditTaskDto;
 import org.example.model.task.Task;
 import org.example.model.task.TaskStatus;
 import org.example.model.task.TaskType;
@@ -9,6 +10,7 @@ import org.example.model.user.User;
 import org.example.model.user.UserRole;
 import org.example.repository.TaskRepository;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -29,6 +31,11 @@ public class TaskServiceImpl implements TaskService, TaskRepository {
 
     @Override
     public Task getById(UUID id) {
+        for (Task task : getTaskList()) {
+            if(task.getId().equals(id)) {
+                return task;
+            }
+        }
         return null;
     }
 
@@ -90,5 +97,24 @@ public class TaskServiceImpl implements TaskService, TaskRepository {
             }
         }
         return new AssignTaskDto("Task type and user role don't match!");
+    }
+    public void changeTaskAssigneeAndType(Task task, User user, TaskType type){
+        task.setType(type);
+        task.setUpdateDate(LocalDateTime.now());
+        System.out.println(assignTask(task, user).getMessage());
+    }
+    public EditTaskDto DeleteTask(ArrayList<Task> taskList, Task task, TaskStatus status){
+        taskList.remove(task);
+        return new EditTaskDto("Task successfully removed");
+    }
+    public EditTaskDto changeTaskName(Task task, String name){
+        task.setName(name);
+        task.setUpdateDate(LocalDateTime.now());
+        return new EditTaskDto("Task name changed successfully");
+    }
+    public EditTaskDto changeTaskDescription(Task task, String description){
+        task.setDescription(description);
+        task.setUpdateDate(LocalDateTime.now());
+        return new EditTaskDto("Task description changed successfully");
     }
 }

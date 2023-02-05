@@ -2,7 +2,6 @@ package org.example.service.user;
 
 import org.example.DTO.AssignRoleDto;
 import org.example.DTO.ChangeRoleOfUserDto;
-import org.example.DTO.EditTaskDto;
 import org.example.DTO.RemoveUserDto;
 import org.example.model.task.Task;
 import org.example.model.task.TaskStatus;
@@ -52,12 +51,5 @@ public class ManagerService implements UserRepository, TaskRepository {
         writeToFile(userList);
         return new ChangeRoleOfUserDto(user.getName() + "'s role changed to " + role);
     }
-    public EditTaskDto editTask(Task task){
-        ArrayList<Task> taskList = getTaskList();
-        for (Task task1 : taskList) {
-            if (task1.getId().equals(task.getId())){
-                task1.se
-            }
-        }
-    }
+
 }
