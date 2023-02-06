@@ -15,14 +15,19 @@ import java.util.ArrayList;
 public class ManagerService implements UserRepository, TaskRepository {
     public AssignRoleDto assignRole(User user, UserRole userRole){
         ArrayList<User> userList = getUserList();
+        for (Task task : getTaskList()) {
+            if (task.getAssigneeId().equals(user.getId()) && !task.getStatus().equals(TaskStatus.DONE)){
+                return new AssignRoleDto("This user has active task cannot remove this user!");
+            }
+        }
         for (User user1 : userList) {
             if (user1.getEmail().equals(user.getEmail())){
                 user1.setRole(userRole);
-                writeToFile(userList);
-                return new AssignRoleDto(user.getName() + "'s role assigned to: " + userRole);
+                break;
             }
         }
-        return new AssignRoleDto("Failed to assign role!");
+        writeToFile(userList);
+        return new AssignRoleDto(user.getName() + "'s role assigned to: " + userRole);
     }
     public RemoveUserDto removeUser(User user){
         for (Task task : getTaskList()) {
@@ -35,21 +40,4 @@ public class ManagerService implements UserRepository, TaskRepository {
         writeToFile(userList);
         return new RemoveUserDto(user.getName() + " was successfully deleted!");
     }
-    public ChangeRoleOfUserDto changeRoleOfUser(User user, UserRole role){
-        for (Task task : getTaskList()) {
-            if (task.getAssigneeId().equals(user.getId()) && !task.getStatus().equals(TaskStatus.DONE)){
-                return new ChangeRoleOfUserDto("This user has active task cannot remove this user!");
-            }
-        }
-        ArrayList<User> userList = getUserList();
-        for (User user1 : userList) {
-            if (user1.getId().equals(user.getId())){
-                user1.setRole(role);
-                break;
-            }
-        }
-        writeToFile(userList);
-        return new ChangeRoleOfUserDto(user.getName() + "'s role changed to " + role);
-    }
-
 }

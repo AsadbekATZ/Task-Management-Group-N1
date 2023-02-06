@@ -18,4 +18,18 @@ public class User extends BaseModel {
     private String email;
     private String password;
     private UserRole role;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", role=" + role +
+                ", id=" + id +
+                ", createdDate=" + createdDate +
+                ", updateDate=" + updateDate +
+                '}';
+    }
 }

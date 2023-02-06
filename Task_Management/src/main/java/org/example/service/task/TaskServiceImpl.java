@@ -23,7 +23,6 @@ public class TaskServiceImpl implements TaskService, TaskRepository {
         }else if (isTaskDescriptionBlank(task)){
             return new AddDto("Task description cannot be blank!");
         }
-        task.setStatus(TaskStatus.CREATED);
         taskList.add(task);
         writeToTaskList(taskList);
         return new AddDto("Task status: " + task.getStatus());
@@ -54,47 +53,10 @@ public class TaskServiceImpl implements TaskService, TaskRepository {
         if (!task.getStatus().equals(TaskStatus.CREATED) && !task.getStatus().equals(TaskStatus.DONE)){
             return new AssignTaskDto("This task is already assigned!");
         }
-        if (task.getType().equals(TaskType.BA_TASK)) {
-            if(user.getRole().equals(UserRole.BUSINESS_ANALYST)){
+        if (task.getType().name().equals(user.getRole().name())) {
                 task.setStatus(TaskStatus.ASSIGNED);
                 task.setAssigneeId(user.getId());
                 return new AssignTaskDto("Successfully assigned to: " + user.getName());
-            }
-        }
-        if (task.getType().equals(TaskType.SM_TASK)) {
-            if(user.getRole().equals(UserRole.SCRUM_MASTER)){
-                task.setStatus(TaskStatus.ASSIGNED);
-                task.setAssigneeId(user.getId());
-                return new AssignTaskDto("Successfully assigned to: " + user.getName());
-            }
-        }
-        if (task.getType().equals(TaskType.QA_TASK)) {
-            if(user.getRole().equals(UserRole.QUALITY_ASSURANCE_EN)){
-                task.setStatus(TaskStatus.ASSIGNED);
-                task.setAssigneeId(user.getId());
-                return new AssignTaskDto("Successfully assigned to: " + user.getName());
-            }
-        }
-        if (task.getType().equals(TaskType.FE_TASK)) {
-            if(user.getRole().equals(UserRole.FE_LEAD) || user.getRole().equals(UserRole.FRONTEND_DEV)){
-                task.setStatus(TaskStatus.ASSIGNED);
-                task.setAssigneeId(user.getId());
-                return new AssignTaskDto("Successfully assigned to: " + user.getName());
-            }
-        }
-        if (task.getType().equals(TaskType.BE_TASK)) {
-            if(user.getRole().equals(UserRole.BACKEND_DEV) || user.getRole().equals(UserRole.BE_LEAD)){
-                task.setStatus(TaskStatus.ASSIGNED);
-                task.setAssigneeId(user.getId());
-                return new AssignTaskDto("Successfully assigned to: " + user.getName());
-            }
-        }
-        if (task.getType().equals(TaskType.TEST)) {
-            if(user.getRole().equals(UserRole.TESTER)){
-                task.setStatus(TaskStatus.ASSIGNED);
-                task.setAssigneeId(user.getId());
-                return new AssignTaskDto("Successfully assigned to: " + user.getName());
-            }
         }
         return new AssignTaskDto("Task type and user role don't match!");
     }
@@ -103,18 +65,33 @@ public class TaskServiceImpl implements TaskService, TaskRepository {
         task.setUpdateDate(LocalDateTime.now());
         System.out.println(assignTask(task, user).getMessage());
     }
-    public EditTaskDto DeleteTask(ArrayList<Task> taskList, Task task, TaskStatus status){
+    public EditTaskDto deleteTask(Task task){
+        ArrayList<Task> taskList = getTaskList();
         taskList.remove(task);
+        writeToTaskList(taskList);
         return new EditTaskDto("Task successfully removed");
     }
     public EditTaskDto changeTaskName(Task task, String name){
-        task.setName(name);
-        task.setUpdateDate(LocalDateTime.now());
+        ArrayList<Task> taskList = getTaskList();
+        for (Task task1 : taskList) {
+            if (task1.getId().equals(task.getId())){
+                task1.setName(name);
+                task1.setUpdateDate(LocalDateTime.now());
+                break;
+            }
+        }
+        writeToTaskList(taskList);
         return new EditTaskDto("Task name changed successfully");
     }
     public EditTaskDto changeTaskDescription(Task task, String description){
-        task.setDescription(description);
-        task.setUpdateDate(LocalDateTime.now());
+        ArrayList<Task> taskList = getTaskList();
+        for (Task task1 : taskList) {
+            if (task1.getId().equals(task.getId())){
+                task1.setDescription(description);
+                task1.setUpdateDate(LocalDateTime.now());
+                break;
+            }
+        }
         return new EditTaskDto("Task description changed successfully");
     }
 }

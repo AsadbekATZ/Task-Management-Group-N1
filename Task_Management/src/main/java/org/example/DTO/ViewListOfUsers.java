@@ -10,13 +10,14 @@ public class ViewListOfUsers implements UserRepository {
         System.out.println("List of users in role of: " + role);
         for (User user : getUserList()) {
             if (user.getRole().equals(role)){
-                System.out.println("*********" + cnt + "********");
+                System.out.println("*********" + ++cnt + "********");
                 System.out.println("User ID: " + user.getId());
                 System.out.println("User name: " + user.getName());
                 System.out.println("User last name: " + user.getLastname());
                 System.out.println("User email: " + user.getEmail());
                 System.out.println("User created date: " + user.getCreatedDate());
                 System.out.println("User updated date: " + user.getUpdateDate());
+                System.out.println("*************************");
             }
         }
     }
