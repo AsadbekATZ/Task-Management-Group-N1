@@ -27,6 +27,9 @@ public class WorkWithTasksUI implements ScannerUtil {
             switch (stepCode) {
                 case "1" -> addTask();
                 case "2" -> TaskOperationUI.taskOperation(taskSelector(currentUser.getRole()));
+                case "0" -> {
+                    return;
+                }
             }
         }
     }

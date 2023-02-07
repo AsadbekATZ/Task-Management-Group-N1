@@ -55,7 +55,7 @@ public class UserServiceImpl implements UserService, UserRepository, TaskReposit
         for (User user : getUserList()) {
             if (user.getEmail().equals(email) && user.getPassword().equals(password)){
                 return new UserLoginDto("Successfully signed in!\n*****Current User: "
-                + user + "*****", user);
+                + user.getName() + "*****", user);
             }
         }
         return new UserLoginDto("User Not Found!", null);

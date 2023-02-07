@@ -1,15 +1,12 @@
 package org.example.ui.workWithUsers;
 
-import org.example.model.task.TaskType;
 import org.example.model.user.User;
 import org.example.model.user.UserRole;
 import org.example.service.user.UserServiceImpl;
-import org.example.ui.workWithTasks.TaskOperationUI;
 import org.example.util.ScannerUtil;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
-import java.util.UUID;
 
 public class WorkWithUsersUI implements ScannerUtil {
 
@@ -30,7 +27,8 @@ public class WorkWithUsersUI implements ScannerUtil {
     }
     public static User userSelector() {
         System.out.println("""
-                Choose user type: 1. Business analyst
+                Choose user type: 
+                1. Business analyst
                 2. Scrum master
                 3. Frontend lead
                 4. Backend lead
@@ -38,6 +36,7 @@ public class WorkWithUsersUI implements ScannerUtil {
                 6. Tester
                 7. Frontend developer
                 8. Backend developer
+                9. User
                 """);
         UserRole userType = null;
         String choose = scannerStr.nextLine();
@@ -50,16 +49,22 @@ public class WorkWithUsersUI implements ScannerUtil {
             case "6" -> userType = UserRole.TESTER;
             case "7" -> userType = UserRole.FRONTEND_DEV;
             case "8" -> userType = UserRole.BACKEND_DEV;
-            default -> {
-                userSelector();
-            }
+            case "9" -> userType = UserRole.USER;
+            default -> userSelector();
         }
         int cnt = 0;
+        if (listByRole(userType).isEmpty()){
+            System.out.println("There is no any users in this role!");
+            System.out.print("Press any key to go back: ");
+            scannerStr.nextLine();
+            userSelector();
+        }
         for (User user : listByRole(userType)) {
             System.out.println("********" + ++cnt + "********");
             System.out.println(user);
             System.out.println("*************************");
         }
+        System.out.print("Choose user you want to operate: ");
         int choose1 = 0;
         try {
             choose1 = scannerInt.nextInt();
@@ -70,6 +75,7 @@ public class WorkWithUsersUI implements ScannerUtil {
         if (choose1 < 1 && choose1 >= listByRole(userType).size()){
             userSelector();
         }
+        System.out.println(listByRole(userType).get(choose1-1));
         return listByRole(userType).get(choose1-1);
     }
     public static ArrayList<User> listByRole(UserRole role){
