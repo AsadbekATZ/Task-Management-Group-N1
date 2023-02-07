@@ -1,10 +1,73 @@
 [ {
-  "id" : "82356b21-781c-4733-8adf-c61a0ffd5cc8",
-  "createdDate" : "04.02.2023 18:34:35",
-  "updateDate" : "04.02.2023 18:34:35",
-  "name" : "Harry",
-  "lastname" : "Potter",
-  "email" : "test@gmail.com",
-  "password" : "password",
+  "id" : "47fc2ce2-ff50-42dc-b88b-960e6848bfee",
+  "createdDate" : "06.02.2023 12:44:09",
+  "updateDate" : "06.02.2023 12:44:09",
+  "name" : "Admin",
+  "lastname" : "Admin",
+  "email" : "admin@gmail.com",
+  "password" : "Admin008$",
+  "role" : "MANAGER"
+}, {
+  "id" : "bbb18376-b4a2-42b0-a1db-056f305830c8",
+  "createdDate" : "07.02.2023 10:14:05",
+  "updateDate" : "07.02.2023 10:14:05",
+  "name" : "Asadbek",
+  "lastname" : "Ziyodullayev",
+  "email" : "ziyodullayevasadbek@gmail.com",
+  "password" : "Mirror008$",
+  "role" : "BE_LEAD"
+}, {
+  "id" : "ecf6333c-1254-4334-b062-82c73e72d770",
+  "createdDate" : "07.02.2023 10:15:11",
+  "updateDate" : "07.02.2023 10:15:11",
+  "name" : "Davron",
+  "lastname" : "Davronov",
+  "email" : "davron@gmail.com",
+  "password" : "Mirror008$",
+  "role" : "USER"
+}, {
+  "id" : "d676ba6b-2be0-4583-8c50-fea20ce05fce",
+  "createdDate" : "07.02.2023 10:15:37",
+  "updateDate" : "07.02.2023 10:15:37",
+  "name" : "Omadaka",
+  "lastname" : "Omadakayev",
+  "email" : "omadaka@gmail.com",
+  "password" : "Mirror008$",
+  "role" : "USER"
+}, {
+  "id" : "9ba15327-c8de-44fa-9eab-53b5de23610b",
+  "createdDate" : "07.02.2023 10:16:21",
+  "updateDate" : "07.02.2023 10:16:21",
+  "name" : "Ismoilxon",
+  "lastname" : "Ismoilxonov",
+  "email" : "ismoil@gmail.com",
+  "password" : "Mirror008$",
+  "role" : "USER"
+}, {
+  "id" : "6aecaffa-5c2b-40f0-b801-cfd36dc8e851",
+  "createdDate" : "07.02.2023 10:16:54",
+  "updateDate" : "07.02.2023 10:16:54",
+  "name" : "Shahbos",
+  "lastname" : "Boboqulov",
+  "email" : "shahbosboboqulov@gmail.com",
+  "password" : "Mirror008$",
+  "role" : "USER"
+}, {
+  "id" : "a338d01a-6cd7-459b-8964-312b54a12e76",
+  "createdDate" : "07.02.2023 10:17:44",
+  "updateDate" : "07.02.2023 10:17:44",
+  "name" : "Nodirbek",
+  "lastname" : "Tojiahmedov",
+  "email" : "nodirbek@gmail.com",
+  "password" : "Mirror008$",
+  "role" : "USER"
+}, {
+  "id" : "00d14e2d-a957-44ed-9743-69bb1b8f1b7a",
+  "createdDate" : "07.02.2023 10:18:24",
+  "updateDate" : "07.02.2023 10:18:24",
+  "name" : "Sardor",
+  "lastname" : "Shuxratov",
+  "email" : "sardor@gmail.com",
+  "password" : "Mirror008$",
   "role" : "USER"
 } ]

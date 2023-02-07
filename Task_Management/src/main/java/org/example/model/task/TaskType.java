@@ -1,10 +1,10 @@
 package org.example.model.task;
 
 public enum TaskType {
-    BE_TASK,
-    FE_TASK,
-    TEST,
-    QA_TASK,
-    SM_TASK,
-    BA_TASK,
+    BE_LEAD,
+    FE_LEAD,
+    TESTER,
+    QUALITY_ASSURANCE_EN,
+    SCRUM_MASTER,
+    BUSINESS_ANALYST,
 }

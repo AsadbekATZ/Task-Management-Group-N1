@@ -18,4 +18,18 @@ public class Task extends BaseModel {
     private UUID assigneeId;
     private TaskType type;
     private TaskStatus status;
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", assigneeId=" + assigneeId +
+                ", type=" + type + " Task" +
+                ", status=" + status +
+                ", id=" + id +
+                ", createdDate=" + createdDate +
+                ", updateDate=" + updateDate +
+                '}';
+    }
 }
