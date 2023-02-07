@@ -1,9 +1,11 @@
 package org.example.service;
 
+import org.example.DTO.AddDto;
+
 import java.util.UUID;
 
 public interface BaseService<T> {
-    int add(T t);
+    AddDto add(T t);
 
     T getById(UUID id);
 }
