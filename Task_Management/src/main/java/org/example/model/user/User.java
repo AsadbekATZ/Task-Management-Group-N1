@@ -7,6 +7,7 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 import org.example.model.BaseModel;
 
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 @Getter
@@ -32,16 +33,16 @@ public class User extends BaseModel {
     public int hashCode() {
         return Objects.hash(getName(), getLastname(), getEmail(), getPassword(), getRole());
     }
-
     @Override
     public String toString() {
-        return  "name='" + name + '\'' +
-                ", \nlastname='" + lastname + '\'' +
-                ", \nemail='" + email + '\'' +
-                ", \npassword='" + password + '\'' +
-                ", \nrole=" + role +
-                ", \nid=" + id +
-                ", \ncreatedDate=" + createdDate +
-                ", \nupdateDate=";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss");
+        return  "Name = '" + name + '\'' +
+                ", \nLastname = '" + lastname + '\'' +
+                ", \nEmail = '" + email + '\'' +
+                ", \nPassword = '" + password + '\'' +
+                ", \nRole = " + role +
+                ", \nID = " + id +
+                ", \nCreated Date = " + createdDate.format(formatter) +
+                ", \nUpdate Date = ";
     }
 }
